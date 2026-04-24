@@ -29,5 +29,13 @@ pipeline {
                 }
             }
         }
+
+        stage("Docker Build") {
+            steps {
+                dir('app') {
+                    sh 'docker build -t ecv-devops-app .'
+                }
+            }
+        }
     }
 }
