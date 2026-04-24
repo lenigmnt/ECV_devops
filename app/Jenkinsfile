@@ -4,17 +4,15 @@ pipeline {
     stages {
         stage("Install") {
             steps {
-                dir('app') {
-                    sh 'npm ci'
-                }
+                sh 'npm ci'
+                
             }
         }
 
         stage("Test") {
             steps {
-                dir('app') {
-                    sh 'npm test'
-                }
+                sh 'npm test'
+            
             }
         }
     }
