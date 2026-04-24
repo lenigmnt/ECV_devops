@@ -1,12 +1,7 @@
-FROM node:20-alpine
+FROM jenkins/jenkins:lts-jdk17
 
-WORKDIR /usr/src/app
+USER root
 
-COPY package*.json ./
-RUN npm ci --omit=dev
+RUN apt-get update && apt-get install -y nodejs npm
 
-COPY src ./src
-
-EXPOSE 3000
-
-CMD ["node", "src/server.js"]
+USER jenkins
