@@ -10,10 +10,22 @@ pipeline {
             }
         }
 
-        stage("Test") {
-            steps {
-                dir('app') {
-                    sh 'npm test'
+        stage("Qualité") {
+            parallel {
+                stage("Lint") {
+                    steps {
+                        dir('app') {
+                            sh 'npm run lint'
+                        }
+                    }
+                }
+
+                stage("Test") {
+                    steps {
+                        dir('app') {
+                            sh 'npm run test:coverage'
+                        }
+                    }
                 }
             }
         }
